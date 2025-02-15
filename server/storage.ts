@@ -84,7 +84,6 @@ export class DatabaseStorage implements IStorage {
     await db.delete(products).where(eq(products.id, id));
   }
 
-  // Add initial products
   async initializeProducts() {
     const sampleProducts = [
       {

@@ -17,17 +17,19 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="h-[calc(100vh-4rem)] overflow-y-auto snap-y snap-mandatory">
-      {products?.map((product) => (
-        <div 
-          key={product.id} 
-          className="h-[calc(100vh-4rem)] snap-start flex items-center justify-center p-8"
-        >
-          <div className="w-full max-w-2xl mx-auto">
-            <ProductCard product={product} />
+    <div className="min-h-[calc(100vh-4rem)] overflow-y-auto">
+      <div className="snap-y snap-mandatory">
+        {products?.map((product) => (
+          <div 
+            key={product.id} 
+            className="min-h-[calc(100vh-4rem)] snap-start flex items-center justify-center p-8"
+          >
+            <div className="w-full max-w-2xl mx-auto">
+              <ProductCard product={product} />
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
