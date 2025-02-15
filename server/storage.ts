@@ -97,14 +97,14 @@ export class DatabaseStorage implements IStorage {
         carbohydrates: "75.0"
       },
       {
-        name: "Dried Apricots",
-        description: "Naturally sweet dried apricots, rich in fiber and vitamins. A healthy snack option.",
-        price: "105.00",
-        imageUrl: "https://images.unsplash.com/photo-1596404643764-2a2461483a3b",
+        name: "Dried Figs",
+        description: "Sweet and chewy dried figs, packed with fiber and minerals. A traditional Moroccan favorite.",
+        price: "115.00",
+        imageUrl: "https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1",
         discountPercentage: null,
-        protein: "3.4",
-        fat: "0.5",
-        carbohydrates: "62.6"
+        protein: "3.3",
+        fat: "0.9",
+        carbohydrates: "64.0"
       },
       {
         name: "Premium Saffron",
@@ -117,24 +117,54 @@ export class DatabaseStorage implements IStorage {
         carbohydrates: "0.0"
       },
       {
-        name: "Mixed Dried Fruits Pack",
-        description: "A delicious mix of dried figs, raisins, and dates. Perfect for healthy snacking.",
-        price: "150.00",
-        imageUrl: "https://images.unsplash.com/photo-1596916179584-c461876ff36d",
-        discountPercentage: 15,
-        protein: "2.5",
-        fat: "0.8",
-        carbohydrates: "65.4"
-      },
-      {
-        name: "Organic Ground Cumin",
+        name: "Cumin Spice",
         description: "Freshly ground cumin with intense aroma. Essential spice for Moroccan cuisine.",
-        price: "315.00",
+        price: "300.00",
         imageUrl: "https://images.unsplash.com/photo-1599909631725-41b4948d9672",
         discountPercentage: null,
         protein: "0.0",
         fat: "0.0",
         carbohydrates: "0.0"
+      },
+      {
+        name: "Green Olives",
+        description: "Fresh and crisp Moroccan green olives, perfect for snacking or cooking.",
+        price: "70.00",
+        imageUrl: "https://images.unsplash.com/photo-1612257436393-06763bce9f0c",
+        discountPercentage: null,
+        protein: "0.8",
+        fat: "15.0",
+        carbohydrates: "3.8"
+      },
+      {
+        name: "Dried Apricots",
+        description: "Naturally sweet dried apricots, rich in fiber and vitamins. A healthy snack option.",
+        price: "105.00",
+        imageUrl: "https://images.unsplash.com/photo-1596404643764-2a2461483a3b",
+        discountPercentage: null,
+        protein: "3.4",
+        fat: "0.5",
+        carbohydrates: "62.6"
+      },
+      {
+        name: "Ras el Hanout",
+        description: "Traditional Moroccan spice blend combining over 20 different spices. Perfect for tagines and marinades.",
+        price: "375.00",
+        imageUrl: "https://images.unsplash.com/photo-1596547609652-9cf5d8c22b1f",
+        discountPercentage: 15,
+        protein: "0.0",
+        fat: "0.0",
+        carbohydrates: "0.0"
+      },
+      {
+        name: "Picholine Marocaine Olives",
+        description: "Premium Moroccan olives with a distinctive flavor and meaty texture.",
+        price: "92.50",
+        imageUrl: "https://images.unsplash.com/photo-1593001874117-c99c300f6c09",
+        discountPercentage: null,
+        protein: "0.8",
+        fat: "15.0",
+        carbohydrates: "3.8"
       }
     ];
 
