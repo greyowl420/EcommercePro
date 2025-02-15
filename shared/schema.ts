@@ -16,6 +16,10 @@ export const products = pgTable("products", {
   price: decimal("price", { precision: 10, scale: 2 }).notNull(),
   imageUrl: text("image_url").notNull(),
   discountPercentage: integer("discount_percentage"),
+  // Adding nutritional information
+  protein: decimal("protein", { precision: 5, scale: 2 }),
+  fat: decimal("fat", { precision: 5, scale: 2 }),
+  carbohydrates: decimal("carbohydrates", { precision: 5, scale: 2 }),
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({

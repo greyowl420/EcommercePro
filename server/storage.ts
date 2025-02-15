@@ -1,14 +1,17 @@
 import { users, products } from "@shared/schema";
 import type { User, Product, InsertUser, InsertProduct } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 import session from "express-session";
-import createMemoryStore from "memorystore";
+import connectPg from "connect-pg-simple";
+import { pool } from "./db";
 
-const MemoryStore = createMemoryStore(session);
+const PostgresSessionStore = connectPg(session);
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  createUser(user: InsertUser & { isAdmin?: boolean }): Promise<User>;
   getProducts(): Promise<Product[]>;
   createProduct(product: InsertProduct): Promise<Product>;
   updateProduct(id: number, product: Partial<InsertProduct>): Promise<Product | undefined>;
@@ -16,75 +19,46 @@ export interface IStorage {
   sessionStore: session.Store;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private products: Map<number, Product>;
-  private currentUserId: number;
-  private currentProductId: number;
+export class DatabaseStorage implements IStorage {
   readonly sessionStore: session.Store;
 
   constructor() {
-    this.users = new Map();
-    this.products = new Map();
-    this.currentUserId = 1;
-    this.currentProductId = 1;
-    this.sessionStore = new MemoryStore({
-      checkPeriod: 86400000,
+    this.sessionStore = new PostgresSessionStore({
+      pool,
+      createTableIfMissing: true,
     });
-
-    // Seed initial admin user
-    this.createUser({
-      username: "admin",
-      password: "admin",
-      isAdmin: true,
-    });
-
-    // Seed some initial products
-    const sampleProducts = [
-      {
-        name: "Premium Watch",
-        description: "Elegant timepiece for any occasion",
-        price: "299.99",
-        imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-        discountPercentage: 15
-      },
-      {
-        name: "Wireless Headphones",
-        description: "Premium sound quality with noise cancellation",
-        price: "199.99",
-        imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
-        discountPercentage: null
-      }
-    ];
-
-    sampleProducts.forEach(product => this.createProduct(product));
   }
 
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username
-    );
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user;
   }
 
   async createUser(insertUser: InsertUser & { isAdmin?: boolean }): Promise<User> {
-    const id = this.currentUserId++;
-    const user: User = { id, ...insertUser, isAdmin: insertUser.isAdmin ?? false };
-    this.users.set(id, user);
+    const [user] = await db
+      .insert(users)
+      .values({
+        ...insertUser,
+        isAdmin: insertUser.isAdmin ?? false,
+      })
+      .returning();
     return user;
   }
 
   async getProducts(): Promise<Product[]> {
-    return Array.from(this.products.values());
+    return await db.select().from(products);
   }
 
   async createProduct(product: InsertProduct): Promise<Product> {
-    const id = this.currentProductId++;
-    const newProduct = { id, ...product };
-    this.products.set(id, newProduct);
+    const [newProduct] = await db
+      .insert(products)
+      .values(product)
+      .returning();
     return newProduct;
   }
 
@@ -92,17 +66,17 @@ export class MemStorage implements IStorage {
     id: number,
     update: Partial<InsertProduct>
   ): Promise<Product | undefined> {
-    const existing = this.products.get(id);
-    if (!existing) return undefined;
-
-    const updated = { ...existing, ...update };
-    this.products.set(id, updated);
+    const [updated] = await db
+      .update(products)
+      .set(update)
+      .where(eq(products.id, id))
+      .returning();
     return updated;
   }
 
   async deleteProduct(id: number): Promise<void> {
-    this.products.delete(id);
+    await db.delete(products).where(eq(products.id, id));
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

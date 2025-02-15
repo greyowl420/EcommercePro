@@ -6,6 +6,7 @@ import { AuthProvider } from "@/hooks/use-auth";
 import { CartProvider } from "@/context/cart-context";
 import HomePage from "@/pages/home-page";
 import ProductsPage from "@/pages/products-page";
+import ProductDetail from "@/pages/product-detail";
 import FaqPage from "@/pages/faq-page";
 import CheckoutPage from "@/pages/checkout-page";
 import AuthPage from "@/pages/auth-page";
@@ -21,6 +22,7 @@ function Router() {
       <Switch>
         <Route path="/" component={HomePage} />
         <Route path="/products" component={ProductsPage} />
+        <Route path="/product/:id" component={ProductDetail} />
         <Route path="/faq" component={FaqPage} />
         <Route path="/checkout" component={CheckoutPage} />
         <Route path="/auth" component={AuthPage} />

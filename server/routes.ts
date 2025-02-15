@@ -14,6 +14,21 @@ export function registerRoutes(app: Express): Server {
     res.json(products);
   });
 
+  // Single product endpoint
+  app.get("/api/products/:id", async (req, res) => {
+    const id = parseInt(req.params.id);
+    if (isNaN(id)) {
+      return res.sendStatus(400);
+    }
+
+    const product = await storage.getProduct(id);
+    if (!product) {
+      return res.sendStatus(404);
+    }
+
+    res.json(product);
+  });
+
   app.post("/api/products", async (req, res) => {
     if (!req.isAuthenticated() || !req.user.isAdmin) {
       return res.sendStatus(403);
