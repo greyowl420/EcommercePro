@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function HomePage() {
+  const { user } = useAuth();
+
   return (
     <div>
       {/* Hero Section */}
@@ -10,14 +13,14 @@ export default function HomePage() {
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1590059390747-f20136c90018')", // Moroccan souk/tent shop image
+            backgroundImage: "url('https://images.unsplash.com/photo-1523731407965-2430cd12f5e4')", // Traditional Moroccan tent shop
             filter: "brightness(0.5)"
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-white">
           <div className="max-w-2xl bg-black/30 p-8 rounded-lg backdrop-blur-sm">
             <h1 className="text-5xl font-bold mb-6">
-              Welcome to Our Moroccan Souk
+              Welcome to Our Souk
             </h1>
             <p className="text-xl mb-8">
               Step into our traditional marketplace, where the rich aromas of spices 
@@ -34,11 +37,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Categories */}
+      {/* Categories */}
       <section className="py-16 bg-[#FDF6E9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-12 text-center text-[#5C3D2E]">Our Treasures</h2>
-
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
               <div className="bg-[#F8B87E] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -95,6 +97,49 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Navigation Footer */}
+      <footer className="bg-[#5C3D2E] text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="font-semibold mb-4">Shop</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/products">
+                    <a className="hover:text-[#F8B87E] transition-colors">Products</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/faq">
+                    <a className="hover:text-[#F8B87E] transition-colors">FAQ</a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {user && (
+              <div>
+                <h3 className="font-semibold mb-4">Account</h3>
+                <ul className="space-y-2">
+                  {user.isAdmin && (
+                    <li>
+                      <Link href="/admin">
+                        <a className="hover:text-[#F8B87E] transition-colors">Admin</a>
+                      </Link>
+                    </li>
+                  )}
+                  <li>
+                    <Link href="/auth">
+                      <a className="hover:text-[#F8B87E] transition-colors">Profile</a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
