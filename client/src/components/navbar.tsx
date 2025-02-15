@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { ShoppingBag, Search } from "lucide-react";
 import { useCart } from "@/context/cart-context";
 import CartDrawer from "./cart-drawer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -14,15 +14,35 @@ export default function Navbar({ onSearch }: NavbarProps) {
   const { items } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const cartItemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsVisible(currentScrollY < lastScrollY || currentScrollY < 50);
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 bg-white border-b z-40">
+      <nav className={`fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b z-40 transition-transform duration-300 ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/">
-              <a className="text-2xl font-bold tracking-wider text-[#5C3D2E]">SOUK</a>
+              <a className="text-3xl font-bold tracking-wider text-[#5C3D2E] relative group">
+                <span className="bg-gradient-to-r from-[#5C3D2E] to-[#8B5E3C] bg-clip-text text-transparent">
+                  SOUK
+                </span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C17817] transition-all duration-300 group-hover:w-full"></span>
+              </a>
             </Link>
 
             <div className="flex items-center">
@@ -63,9 +83,6 @@ export default function Navbar({ onSearch }: NavbarProps) {
       </button>
 
       <CartDrawer open={isCartOpen} onClose={() => setIsCartOpen(false)} />
-
-      {/* Spacer to prevent content from hiding under fixed navbar */}
-      <div className="h-16" />
     </>
   );
 }
