@@ -4,6 +4,7 @@ import { useCart } from "@/context/cart-context";
 import CartDrawer from "./cart-drawer";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface NavbarProps {
   onSearch?: (query: string) => void;
@@ -12,6 +13,7 @@ interface NavbarProps {
 export default function Navbar({ onSearch }: NavbarProps) {
   const { items } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const cartItemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
@@ -23,14 +25,23 @@ export default function Navbar({ onSearch }: NavbarProps) {
               <a className="text-2xl font-bold tracking-wider text-[#5C3D2E]">SOUK</a>
             </Link>
 
-            <div className="relative w-full max-w-xs ml-4">
-              <Input
-                type="text"
-                placeholder="Search products..."
-                className="pl-10"
-                onChange={(e) => onSearch?.(e.target.value)}
-              />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <div className="flex items-center">
+              <div className={`transition-all duration-300 ${isSearchOpen ? 'w-64 opacity-100' : 'w-0 opacity-0'}`}>
+                <Input
+                  type="text"
+                  placeholder="Search products..."
+                  className={`pl-10 ${isSearchOpen ? 'visible' : 'invisible'}`}
+                  onChange={(e) => onSearch?.(e.target.value)}
+                />
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="ml-2"
+              >
+                <Search className="h-5 w-5 text-[#5C3D2E]" />
+              </Button>
             </div>
           </div>
         </div>
