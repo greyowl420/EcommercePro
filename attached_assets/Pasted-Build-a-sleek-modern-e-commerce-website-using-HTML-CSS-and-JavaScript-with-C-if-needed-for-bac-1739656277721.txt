@@ -1,0 +1,107 @@
+Build a sleek, modern e-commerce website using HTML, CSS, and JavaScript (with C++ if needed for backend processing). The website should have five main pages and include ad space, a product management system for the owner, and special styling for discounted products.**
+ 
+### **Pages and Features:**
+ 
+ 
+1.  
+**Homepage:**
+ 
+ 
+  - A clean, attractive landing page.
+ 
+  - A navigation bar linking to **Product Page, FAQs, Cart/Checkout Page, and Admin Panel (for adding products)**.
+ 
+  - A **dedicated space for external ads** (e.g., banner on the side or top).
+ 
+
+ 
+ 
+2.  
+**Product Page (Instagram-like scrolling feed):**
+ 
+ 
+  - Users scroll through products in a feed-style layout.
+ 
+  - Each product has: 
+ 
+    - A **Like button** (to favorite products).
+ 
+    - An **Add to Cart button** (updates the cart in real-time).
+ 
+
+ 
+ 
+  - **Discounted products should stand out** with a different design (e.g., a red tag showing the percentage off).
+ 
+  - A **hovering cart button** (like Amazon) at the bottom corner, showing cart count and linking to checkout.
+ 
+
+ 
+ 
+3.  
+**FAQs Page:**
+ 
+ 
+  - A structured page with common customer questions and answers.
+ 
+
+ 
+ 
+4.  
+**Checkout Page (Payment & Order Summary):**
+ 
+ 
+  - Displays **selected products, quantity, and price**.
+ 
+  - Shows **subtotal, delivery fee, and total amount at the bottom**.
+ 
+  - Offers **three payment methods:** 
+ 
+    - **Card Payment** (form with card number, expiry, CVV).
+ 
+    - **PayPal Button** for online transactions.
+ 
+    - **Cash on Delivery (COD)** option.
+ 
+
+ 
+ 
+  - A **Place Order button** that processes the payment.
+ 
+
+ 
+ 
+5.  
+**Admin Panel (For Adding Products & Managing Sales):**
+ 
+ 
+  - As the website owner, you should have a private page where you can: 
+ 
+    - **Add new products** (with name, price, image, description).
+ 
+    - **Mark a product as "On Sale"** and enter the discount percentage.
+ 
+    - The sale price should be automatically calculated and displayed on the product page.
+ 
+    - **Remove or edit products** when needed.
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+### **Additional Requirements:**
+ 
+ 
+- **Sleek and modern UI** with smooth animations.
+ 
+- **Responsive design** for mobile and desktop.
+ 
+- **JavaScript for real-time interactions** (cart updates, total calculation, admin functions).
+ 
+- **C++ (if needed) for backend processing**, such as order handling and data storage.
+ 
+- **Code should be well-structured and commented** for future scalability.
