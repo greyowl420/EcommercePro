@@ -68,11 +68,11 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
           
           <div className="flex items-center gap-4">
             <span className="text-3xl font-medium">
-              ${discountedPrice.toFixed(2)}
+              {discountedPrice.toFixed(2)} MAD
             </span>
             {product.discountPercentage && (
               <span className="text-lg line-through text-muted-foreground">
-                ${Number(product.price).toFixed(2)}
+                {Number(product.price).toFixed(2)} MAD
               </span>
             )}
           </div>

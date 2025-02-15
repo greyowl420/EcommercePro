@@ -30,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     >
       <Card className="overflow-hidden bg-card hover:shadow-lg transition-shadow duration-300">
         <CardContent className="p-0">
-          <div 
+          <div
             onClick={() => setLocation(`/product/${product.id}`)}
             className="cursor-pointer"
           >
@@ -56,11 +56,11 @@ export default function ProductCard({ product }: ProductCardProps) {
 
               <div className="flex items-baseline gap-2">
                 <span className="text-2xl font-medium">
-                  ${discountedPrice.toFixed(2)}
+                  {discountedPrice.toFixed(2)} MAD
                 </span>
                 {product.discountPercentage && (
                   <span className="text-sm line-through text-muted-foreground">
-                    ${Number(product.price).toFixed(2)}
+                    {Number(product.price).toFixed(2)} MAD
                   </span>
                 )}
               </div>

@@ -88,34 +88,54 @@ export class DatabaseStorage implements IStorage {
   async initializeProducts() {
     const sampleProducts = [
       {
-        name: "Organic Protein Bar",
-        description: "A delicious and nutritious snack made with natural ingredients. Perfect for pre or post workout.",
-        price: "3.99",
-        imageUrl: "https://images.unsplash.com/photo-1622467827417-bbe2237067a9",
+        name: "Medjool Dates",
+        description: "Premium quality Medjool dates, known for their large size and sweet, caramel-like taste. Perfect for snacking or natural sweetening.",
+        price: "175.00",
+        imageUrl: "https://images.unsplash.com/photo-1587075417548-a55c3fb9e1c9",
         discountPercentage: 10,
-        protein: "12.5",
-        fat: "7.2",
-        carbohydrates: "22.4"
+        protein: "1.8",
+        fat: "0.2",
+        carbohydrates: "75.0"
       },
       {
-        name: "Almond Butter Smoothie",
-        description: "Creamy smoothie blend with almond butter, banana, and oat milk. Rich in protein and healthy fats.",
-        price: "6.99",
-        imageUrl: "https://images.unsplash.com/photo-1577805947697-89e18249d767",
+        name: "Dried Apricots",
+        description: "Naturally sweet dried apricots, rich in fiber and vitamins. A healthy snack option.",
+        price: "105.00",
+        imageUrl: "https://images.unsplash.com/photo-1596404643764-2a2461483a3b",
         discountPercentage: null,
-        protein: "15.0",
-        fat: "8.5",
-        carbohydrates: "25.0"
+        protein: "3.4",
+        fat: "0.5",
+        carbohydrates: "62.6"
       },
       {
-        name: "Quinoa Bowl",
-        description: "Fresh and filling quinoa bowl with roasted vegetables and tahini dressing. High in protein and fiber.",
-        price: "12.99",
-        imageUrl: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c",
+        name: "Premium Saffron",
+        description: "High-quality Moroccan saffron threads, perfect for adding authentic flavor and golden color to your dishes.",
+        price: "25000.00",
+        imageUrl: "https://images.unsplash.com/photo-1607604760190-ec9ccc12156e",
+        discountPercentage: 5,
+        protein: "0.0",
+        fat: "0.0",
+        carbohydrates: "0.0"
+      },
+      {
+        name: "Mixed Dried Fruits Pack",
+        description: "A delicious mix of dried figs, raisins, and dates. Perfect for healthy snacking.",
+        price: "150.00",
+        imageUrl: "https://images.unsplash.com/photo-1596916179584-c461876ff36d",
         discountPercentage: 15,
-        protein: "18.2",
-        fat: "12.4",
-        carbohydrates: "45.6"
+        protein: "2.5",
+        fat: "0.8",
+        carbohydrates: "65.4"
+      },
+      {
+        name: "Organic Ground Cumin",
+        description: "Freshly ground cumin with intense aroma. Essential spice for Moroccan cuisine.",
+        price: "315.00",
+        imageUrl: "https://images.unsplash.com/photo-1599909631725-41b4948d9672",
+        discountPercentage: null,
+        protein: "0.0",
+        fat: "0.0",
+        carbohydrates: "0.0"
       }
     ];
 
